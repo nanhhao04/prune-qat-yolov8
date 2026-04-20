@@ -1,0 +1,38 @@
+# Pipeline Configuration for Jetson Nano (Maxwell)
+
+# Phase 1: Sparsity Training
+sparsity:
+  base_weights: "yolov8n.pt"  # Use Nano model for Jetson Nano
+  epochs: 100
+  batch: 32
+  imgsz: 640
+  sr: 0.01
+  lr0: 0.01
+
+# Phase 2: Pruning
+prune:
+  ratio: 0.3                # Remove 30% of channels
+  model_size: "n"           # n, s, m, l, x
+  weights: "runs/train-sparsity/weights/last.pt"
+
+# Phase 3: Finetuning
+finetune:
+  epochs: 100
+  batch: 32
+  imgsz: 640
+  lr0: 0.001
+
+# Phase 4: QAT (Quantization Aware Training)
+qat:
+  epochs: 10
+  batch: 16
+  imgsz: 640
+  lr0: 0.001
+
+# Phase Stage 5: TensorRT Export
+export:
+  format: "engine"
+  half: True                # Crucial for Jetson Nano (Maxwell supports FP16)
+  int8: False               # INT8 often not beneficial on base Jetson Nano
+  workspace: 1              # 1 GB
+  imgsz: 640

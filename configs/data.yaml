@@ -1,0 +1,11 @@
+# Traffic Camera Dataset Configuration
+train: ../datasets/traffic/train/images
+val: ../datasets/traffic/val/images
+test: ../datasets/traffic/test/images
+
+nc: 4
+names:
+  0: person
+  1: bicycle
+  2: car
+  3: motorcycle
