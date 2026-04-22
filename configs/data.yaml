@@ -1,7 +1,8 @@
 # Traffic Camera Dataset Configuration
-train: ../datasets/traffic/train/images
-val: ../datasets/traffic/val/images
-test: ../datasets/traffic/test/images
+path: C:\Users\Admin\Desktop\yolo_pipeline_hao\datasets\traffic
+train: images/train
+val: images/val
+test: images/val
 
 nc: 4
 names:

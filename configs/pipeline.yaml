@@ -2,28 +2,35 @@
 
 # Phase 1: Sparsity Training
 sparsity:
-  base_weights: "yolov8n.pt"  # Use Nano model for Jetson Nano
-  epochs: 100
+  enabled: true
+  base_weights: "yolov8n.pt"
+  epochs: 50
   batch: 32
   imgsz: 640
   sr: 0.01
   lr0: 0.01
+  device: 0                  # Use GPU (0, 1, etc.) or 'cpu'
 
 # Phase 2: Pruning
 prune:
-  ratio: 0.3                # Remove 30% of channels
-  model_size: "n"           # n, s, m, l, x
+  enabled: true
+  ratio: 0.3
+  model_size: "n"
   weights: "runs/train-sparsity/weights/last.pt"
+  device: 0
 
 # Phase 3: Finetuning
 finetune:
-  epochs: 100
+  enabled: true
+  epochs: 50
   batch: 32
   imgsz: 640
   lr0: 0.001
+  device: 0
 
 # Phase 4: QAT (Quantization Aware Training)
 qat:
+  enabled: false             # Set to false by default as INT8 is optional on Jetson Nano
   epochs: 10
   batch: 16
   imgsz: 640
@@ -31,6 +38,7 @@ qat:
 
 # Phase Stage 5: TensorRT Export
 export:
+  enabled: true
   format: "engine"
   half: True                # Crucial for Jetson Nano (Maxwell supports FP16)
   int8: False               # INT8 often not beneficial on base Jetson Nano

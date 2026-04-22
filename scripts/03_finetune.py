@@ -18,6 +18,7 @@ def main():
         batch=cfg["batch"],
         imgsz=cfg["imgsz"],
         lr0=cfg["lr0"],
+        device=cfg.get("device", 0),
         project="runs",
         name="train-finetune",
         exist_ok=True,
