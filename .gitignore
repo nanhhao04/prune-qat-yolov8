@@ -1,4 +1,4 @@
-# Python
+# --- Python ---
 __pycache__/
 *.py[cod]
 *$py.class
@@ -20,30 +20,55 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-.venv
+.venv/
 venv/
 ENV/
+.pytest_cache/
+.mypy_cache/
 
-# YOLOv8 / Ultralytics
+# --- YOLOv8 / Ultralytics ---
 runs/
-weights/*.pt
-!weights/yolov8n.pt
-*.engine
+*.pt
 *.onnx
+*.engine
 *.torchscript
+*.pb
+*.tflite
+*.mlmodel
+*.weights
 
-# Dataset (Large files)
+# --- Data & Results ---
 datasets/
 dataset/
+data/plate/
+data/traffic/
+benchmark_results.csv
+violation_logs.csv
 *.zip
+*.tar
+*.gz
+*.7z
 *.sqlite
 
-# IDEs
+# --- Media ---
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.jpg
+*.jpeg
+*.png
+*.gif
+
+# --- IDEs & System ---
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# OS
 .DS_Store
 Thumbs.db
+Desktop.ini
+
+# --- Project Specific ---
+scratch/
+temp/

@@ -1,5 +1,5 @@
 # Traffic Camera Dataset Configuration
-path: C:\Users\Admin\Desktop\yolo_pipeline_hao\datasets\traffic
+path: data/traffic
 train: images/train
 val: images/val
 test: images/val

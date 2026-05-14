@@ -4,7 +4,7 @@
 sparsity:
   enabled: true
   base_weights: "yolov8n.pt"
-  epochs: 50
+  epochs: 100
   batch: 32
   imgsz: 640
   sr: 0.01
@@ -16,13 +16,13 @@ prune:
   enabled: true
   ratio: 0.3
   model_size: "n"
-  weights: "runs/train-sparsity/weights/last.pt"
+  weights: "weights/01-sparsity/sparsity/weights/best.pt"
   device: 0
 
 # Phase 3: Finetuning
 finetune:
   enabled: true
-  epochs: 50
+  epochs: 100
   batch: 32
   imgsz: 640
   lr0: 0.001
@@ -31,7 +31,7 @@ finetune:
 # Phase 4: QAT (Quantization Aware Training)
 qat:
   enabled: false             # Set to false by default as INT8 is optional on Jetson Nano
-  epochs: 10
+  epochs: 15
   batch: 16
   imgsz: 640
   lr0: 0.001
